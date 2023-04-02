@@ -1,0 +1,63 @@
+property:
+  message:
+    resource:
+      available: "Resources available"
+  garage:
+    working:
+      days: "1,2,3,4,5,6"
+    break:
+      time: "12"
+    opening:
+      time: "8"
+    closing:
+      time: "17"
+  mechanicsA:
+    working:
+      days: "1,3,4,6"
+  mechanicsB:
+    working:
+      days: "1,2,3,4,5"
+quarkus:
+  smallrye-openapi:
+    info-title: "Fast and Furious Reservation API"
+    info-version: "1.0.0"
+    info-description: "Service for checking and creating an appointment"
+    info-terms-of-service: "Terms of service"
+    info-contact-email: "techsupport@fastandfurious.com"
+    info-contact-name: "Fast and Furious API Support"
+    info-contact-url: "http://exampleurl.com/contact"
+    info-license-name: "Apache 2.0"
+    info-license-url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+  swagger-ui:
+      always-include: "true"
+      path: "/swagger"
+  application:
+    version: "DEVELOPMENT"
+  datasource:
+    db-kind: "h2"
+    jdbc:
+      url: "jdbc:h2:file:../code-with-quarkus/src/main/resources/data/reservation_db;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1"
+  hibernate-orm:
+    dialect: "org.hibernate.dialect.H2Dialect"
+    database:
+      generation: "drop-and-create"
+    log:
+      sql: true
+  jackson:
+    serialization-inclusion: always
+    write-dates-as-timestamps: true
+    write-durations-as-timestamps: true
+"%dev":
+  quarkus:
+    smallrye-openapi:
+      info-title: "Fast and Furious Reservation API (development)"
+"%test":
+  quarkus:
+    smallrye-openapi:
+      info-title: "Fast and Furious Reservation API API (test)"
+mp:
+  openapi:
+    extensions:
+      smallrye:
+        operationIdStrategy: "METHOD"
+
