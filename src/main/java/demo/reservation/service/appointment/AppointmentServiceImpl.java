@@ -65,14 +65,6 @@ public class AppointmentServiceImpl implements AppointmentService {
             default -> "";
         };
 
-        final boolean isMechanicsAvailable = ReservationUtil.validateMechanicsAvailability(mechanicsName, appointmentDatetime, mechanicsWorkingDays);
-        if(!isMechanicsAvailable) {
-            return Response
-                    .status(Response.Status.NOT_FOUND)
-                    .entity(Constants.ErrorMessage.MECHANICS_NOT_AVAILABLE)
-                    .build();
-        }
-
         //check garage working day
         String garageWorkingDays = propertiesConfig.garageWorkingDays();
         final boolean isGarageAvailable = ReservationUtil.validateGarageWorkingDays(garageWorkingDays, appointmentDatetime.getDayOfWeek().getValue());
@@ -80,6 +72,14 @@ public class AppointmentServiceImpl implements AppointmentService {
             return Response
                     .status(Response.Status.NOT_FOUND)
                     .entity(Constants.ErrorMessage.GARAGE_NOT_AVAILABLE)
+                    .build();
+        }
+
+        final boolean isMechanicsAvailable = ReservationUtil.validateMechanicsAvailability(mechanicsName, appointmentDatetime, mechanicsWorkingDays);
+        if(!isMechanicsAvailable) {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity(Constants.ErrorMessage.MECHANICS_NOT_AVAILABLE)
                     .build();
         }
 
