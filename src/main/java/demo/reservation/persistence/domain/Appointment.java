@@ -24,9 +24,9 @@ public class Appointment extends PanacheEntity {
     private LocalDateTime appointmentTime;
 
     public Appointment(Mechanics mechanics, JobType jobType, LocalDateTime appointmentTime) {
-        this.appointmentTime = appointmentTime;
         this.mechanics = mechanics;
         this.jobType = jobType;
+        this.appointmentTime = appointmentTime;
     }
 
     public Appointment() {}

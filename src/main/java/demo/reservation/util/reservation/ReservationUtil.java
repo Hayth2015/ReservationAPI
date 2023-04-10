@@ -60,9 +60,9 @@ public final class ReservationUtil {
      * @param appointmentDateTime {@link LocalDateTime} represents the appointment date and time
      * @param jobType {@link JobType} represents the job type requested
      * @param scheduledAppointments represents list of scheduled appointments
-     * @return Optional<TimeSlot> list of available time slots
+     * @return true if a time slot is available
      */
-    public static Optional<TimeSlot> retrieveAvailableTimeslots(LocalDateTime appointmentDateTime, JobType jobType, List<Appointment> scheduledAppointments) {
+    public static boolean checkAvailableTimeslots(LocalDateTime appointmentDateTime, JobType jobType, List<Appointment> scheduledAppointments) {
         TimeSlot requestedTimeSlot = TimeSlot.of(appointmentDateTime, jobType.getJobDuration(), ChronoUnit.MINUTES);
 
         //Convert scheduled appointments into TimeSlots
@@ -86,12 +86,10 @@ public final class ReservationUtil {
         List<TimeSlot> availableTimeSlotsForTheDay = dayTimeSlot.subtract(scheduledTimeSlots);
 
         //Compare the available time slots with the requested timeslot
-        //and return the possible timeslots
-
+        //and return true if possible timeslots exist
         return availableTimeSlotsForTheDay
                 .stream()
-                .filter(timeslot -> timeslot.contains(requestedTimeSlot))
-                .findFirst();
+                .anyMatch(timeslot -> timeslot.contains(requestedTimeSlot));
     }
 
     public static boolean validateMechanicsAvailability(String mechanicsName, LocalDateTime appointmentDatetime, String mechanicsWorkingDays) {

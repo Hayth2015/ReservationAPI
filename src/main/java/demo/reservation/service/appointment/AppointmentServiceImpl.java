@@ -13,7 +13,6 @@ import demo.reservation.service.mechanics.MechanicsService;
 import demo.reservation.util.Constants;
 import demo.reservation.util.MapperUtil;
 import demo.reservation.util.reservation.ReservationUtil;
-import io.quarkus.runtime.annotations.RegisterForReflection;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -105,7 +104,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         List<Appointment> scheduledAppointments = getAppointmentsByMechanicsAndDateTime(mechanics.get(), appointmentDatetime);
 
         //Retrieve available time slots
-        final boolean isTimeslotAvailable = ReservationUtil.retrieveAvailableTimeslots(appointmentDatetime, jobType, scheduledAppointments).isPresent();
+        final boolean isTimeslotAvailable = ReservationUtil.checkAvailableTimeslots(appointmentDatetime, jobType, scheduledAppointments);
         if(!isTimeslotAvailable) {
             return Response
                     .status(Response.Status.NOT_FOUND)
