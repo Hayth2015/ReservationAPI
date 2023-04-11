@@ -1,7 +1,6 @@
 package demo.reservation.service.availability;
 
 import demo.reservation.api.controls.Controls;
-import demo.reservation.api.model.Availability;
 import demo.reservation.api.model.dto.AvailabilityRequestDTO;
 import demo.reservation.api.model.dto.JobTypeEnum;
 import demo.reservation.api.properties.PropertiesConfig;
@@ -44,9 +43,9 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     AppointmentRepository appointmentRepository;
 
     /**
-     * Service that returns list of {@link Availability} for a given parameters
+     * Service that returns list of availabilities for a given parameters
      * @param availabilityRequestDTO represents the job type to search for
-     * @return list of {@link Availability}
+     * @return list of availabilities as Response object
      */
     @Override
     public Response getAvailabilitiesForJobTypeAndOrMechanics(AvailabilityRequestDTO availabilityRequestDTO) {

@@ -1,7 +1,5 @@
 package demo.reservation.api.model;
 
-import demo.reservation.persistence.domain.JobType;
-import demo.reservation.persistence.domain.Mechanics;
 import java.time.LocalDateTime;
 
 public class Appointment {

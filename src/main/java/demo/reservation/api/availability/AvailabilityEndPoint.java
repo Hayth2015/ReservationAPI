@@ -1,6 +1,5 @@
 package demo.reservation.api.availability;
 
-import demo.reservation.api.model.Availability;
 import demo.reservation.api.model.dto.AvailabilityRequestDTO;
 import demo.reservation.service.availability.AvailabilityService;
 
@@ -13,9 +12,9 @@ public class AvailabilityEndPoint implements AvailabilityAPI {
     AvailabilityService availabilityService;
 
     /**
-     * Returns list of {@link Availability} for the given parameters
+     *
      * @param availabilityRequestDTO represents the set of parameters to use for the search
-     * @return list of {@link Availability}
+     * @return Response object that contains the availability list
      */
     @Override
     public Response getAvailabilitiesForJobTypeAndOrMechanics(AvailabilityRequestDTO availabilityRequestDTO) {
